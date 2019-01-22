@@ -24,6 +24,7 @@ module Mail
             end
             encrypted_mail.perform_deliveries = mail.perform_deliveries
             encrypted_mail.raise_delivery_errors = mail.raise_delivery_errors
+            encrypted_mail.delivery_handler = options[:delivery_handler]
             encrypted_mail.deliver
           end
         else

@@ -40,15 +40,15 @@ module Mail
         when nil
           @gpg
         when false
-          @gpg = nil
           if Mail::Gpg::DeliveryHandler == delivery_handler
-            self.delivery_handler = nil
+            self.delivery_handler = @gpg[:delivery_handler]
           end
+          @gpg = nil
           nil
         else
           self.raise_encryption_errors = true if raise_encryption_errors.nil?
-          @gpg = options
-          self.delivery_handler ||= Mail::Gpg::DeliveryHandler
+          @gpg = {delivery_handler: self.delivery_handler}.merge(options)
+          self.delivery_handler = Mail::Gpg::DeliveryHandler
           nil
         end
       end
