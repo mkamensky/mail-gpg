@@ -26,11 +26,6 @@ module Mail
         end
 
         module ClassMethods
-          def deliver_mail(mail, &block)
-            super(mail) do
-              Mail::Gpg::DeliveryHandler.deliver_mail mail, &block
-            end
-          end
         end
 
       end
